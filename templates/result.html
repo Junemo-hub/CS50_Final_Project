@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple ESG Evaluation result</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* 간단한 정렬만 처리 */
+        .chart-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px; /* 간격만 좀 줌 */
+            margin-top: 20px;
+        }
+        /* 강제로 사이즈를 작게 설정 */
+        canvas {
+            max-width: 200px !important;
+            max-height: 200px !important;
+            width: 200px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size: 26px; color: black; text-align: center;"> ★ ESG ANALYSIS RESULT ★</h1>
+    <h1 style="font-size: 24px; color: black; text-align: center;">Overall Score:    {{ overall_score }} / 100</h1> 
+    <h1 style="font-size: 20px; color: green; text-align: center;">E Score: {{ e_score }} /100</h1>
+    <h1 style="font-size: 20px; color: blue; text-align: center;">S Score:  {{ s_score }} /100</h1>
+    <h1 style="font-size: 20px; color: red; text-align: center;">G Score:   {{ g_score }} /100</h1> 
+
+   <div class="chart-container">
+        <canvas id="chartE"></canvas>
+        <canvas id="chartS"></canvas>
+        <canvas id="chartG"></canvas>
+    </div>
+
+    <script>
+        // 차트 그리기 함수
+        function drawChart(ctx, label, score, color) {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: [label, 'Remaining'],
+                    datasets: [{
+                        data: [score, 100 - score],
+                        backgroundColor: [color, '#D3D3D3']
+                    }]
+                },
+                options: {
+                    cutout: '70%'
+                }
+            });
+        }
+
+        // 각각의 차트 호출
+      drawChart(document.getElementById('chartE').getContext('2d'), 'Environmental', {{ e_score }}, '#4CAF50');
+      drawChart(document.getElementById('chartS').getContext('2d'), 'Social', {{ s_score }}, '#2196F3');
+      drawChart(document.getElementById('chartG').getContext('2d'), 'Governance', {{ g_score }}, '#FF5722');
+    </script>
+    <br><br><br>
+    </ul>
+
+<div style="text-align: center; margin-top: 40px;">
+    <a href="{{ url_for('index') }}"
+       style="display: inline-block; padding: 10px 20px; background-color: #4CAF50; color: white;
+              text-decoration: none; border-radius: 8px; font-size: 16px;">
+        Go to Home
+    </a>
+</div>
+
+</body>
+</html>
