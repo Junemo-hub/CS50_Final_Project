@@ -66,7 +66,7 @@ project/
 
 ## Project Link
 
-[GitHub Repository](https://github.com/yourusername/esg-evaluation-app)
+[[GitHub Repository]](https://github.com/Junemo-hub/CS50_Final_Project/)
 
 ---
 
