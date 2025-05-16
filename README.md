@@ -37,7 +37,7 @@ I'm currently adding score history so logged-in users can see previous evaluatio
 ---
 
 ## Folder Overview
-
+'''
 project/
 │
 ├── app.py
@@ -51,7 +51,7 @@ project/
 │ └── survey.html
 ├── static/
 └── README.md
-
+'''
 
 ---
 
@@ -67,13 +67,6 @@ project/
 ## Project Link
 
 [GitHub Repository](https://github.com/yourusername/esg-evaluation-app)
-
----
-
-## Related Work
-
-- [SQL Business Case Exercises](https://github.com/yourusername/sql-business-cases)  
-  A collection of SQL problems based on realistic analytics scenarios.
 
 ---
 
