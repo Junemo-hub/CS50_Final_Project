@@ -37,7 +37,7 @@ I'm currently adding score history so logged-in users can see previous evaluatio
 ---
 
 ## Folder Overview
-'''
+```
 project/
 │
 ├── app.py
@@ -51,7 +51,7 @@ project/
 │ └── survey.html
 ├── static/
 └── README.md
-'''
+```
 
 ---
 
