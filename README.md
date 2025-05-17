@@ -15,8 +15,6 @@ This is a Flask-based web app that evaluates a user's ESG (Environmental, Social
 - **Chart-based results**  
   Scores are visualized in a compact donut chart so users can quickly see how they did in each category.
 
-- **(WIP) Score history**  
-  I'm working on saving past results so users can track how their scores change over time.
 
 ---
 
@@ -32,7 +30,9 @@ This is a Flask-based web app that evaluates a user's ESG (Environmental, Social
 ## Project Status
 
 The main flow — survey, scoring, and result visualization — is complete.  
-I'm currently adding score history so logged-in users can see previous evaluations.
+- I'm currently adding score history so logged-in users can see previous evaluations.
++ The core survey and result flow is complete. Future improvements may include result history or better survey analytics.
+
 
 ---
 
@@ -41,7 +41,6 @@ I'm currently adding score history so logged-in users can see previous evaluatio
 project/
 │
 ├── app.py
-├── forms.py
 ├── models.py
 ├── templates/
 │ ├── index.html

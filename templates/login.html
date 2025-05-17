@@ -49,6 +49,22 @@
         a:hover {
             text-decoration: underline;
         }
+
+        /* ✅ 여기에 추가 */
+        .flash-messages {
+            list-style-type: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        .flash-messages .error {
+            color: red;
+            background-color: #ffe0e0;
+            border: 1px solid #ffaaaa;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
     </style>
 </head>
 <body>
@@ -56,6 +72,19 @@
 <!-- DEBUG -->
     <div class="login-container">
         <h2>Login</h2>
+
+
+           {% with messages = get_flashed_messages(with_categories=true) %}
+             {% if messages %}
+               <ul class="flash-messages">
+                 {% for category, message in messages %}
+                   <li class="{{ category }}">{{ message }}</li>
+                 {% endfor %}
+               </ul>
+             {% endif %}
+           {% endwith %}
+
+
         <form method="POST" action="/login">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
@@ -65,15 +94,6 @@
     </div>
 
     <!-- 실패 메시지용 JS 팝업 -->
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    <ul class="flash-messages">
-      {% for category, message in messages %}
-        <li class="{{ category }}">{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
 
 
 </body>

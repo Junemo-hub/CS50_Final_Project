@@ -60,7 +60,8 @@ def login():
             flash('Login successful!', 'success')
             return redirect(url_for('index'))
         else:
-            return render_template('login.html', error="Invalid username or password.")
+            flash("Invalid username or password.", "error")            
+            return redirect(url_for('login'))
 
     return render_template("login.html")
 
@@ -71,6 +72,14 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
+
+        # ✅ 이거 추가해야 됨
+        confirm_password = request.form.get('confirm_password')
+
+
+       # ❗비밀번호 불일치 체크가 빠짐
+        if password != confirm_password:
+           return render_template('register.html', error="Passwords do not match.")
         
         # 비밀번호 해싱
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
@@ -139,6 +148,8 @@ def calculate_scores(responses: dict):
     g_questions = [k for k in responses if k.startswith('question_g')]
 
     def score_section(keys):
+        if not keys:
+            return 0
         score = 0
         for key in keys:
             answer = responses[key]
@@ -168,6 +179,11 @@ def result():
 
     # 응답 딕셔너리로 변환
     responses = {resp.question: resp.answer for resp in responses_query}
+
+    # 답변 없을 때
+    if not responses:
+        flash('Please complete the survey before viewing results.', 'error')
+        return redirect(url_for('survey'))
 
     # 점수 계산
     overall_score, e_score, s_score, g_score = calculate_scores(responses)
