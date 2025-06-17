@@ -50,39 +50,39 @@
             text-decoration: underline;
         }
 
-        /* ✅ 여기에 추가 */
         .flash-messages {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
-            margin: 15px 0;
+            margin: 20px 0;
         }
-        .flash-messages .error {
-            color: red;
-            background-color: #ffe0e0;
-            border: 1px solid #ffaaaa;
+
+        .flash-messages li {
             padding: 10px;
-            border-radius: 5px;
+            margin-bottom: 10px;
+            border-radius: 6px;
             font-size: 14px;
+            font-weight: bold;
         }
+
+        .alert-success { background-color: #d4edda; color: #155724; }
+        .alert-danger  { background-color: #f8d7da; color: #721c24; }
+        .alert-info    { background-color: #cce5ff; color: #004085; }
 
     </style>
 </head>
 <body>
-<!-- 로그인 템플릿 맨 위 -->
-<!-- DEBUG -->
     <div class="login-container">
         <h2>Login</h2>
 
-
-           {% with messages = get_flashed_messages(with_categories=true) %}
-             {% if messages %}
-               <ul class="flash-messages">
-                 {% for category, message in messages %}
-                   <li class="{{ category }}">{{ message }}</li>
-                 {% endfor %}
-               </ul>
-             {% endif %}
-           {% endwith %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flash-messages">
+      {% for category, message in messages %}
+        <li class="alert-{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
 
 
         <form method="POST" action="/login">
@@ -90,11 +90,8 @@
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
+
         <p>Don't have an account? <a href="/register">Register here</a></p>
     </div>
-
-    <!-- 실패 메시지용 JS 팝업 -->
-
-
 </body>
 </html>

@@ -2,58 +2,106 @@
 <html>
 <head>
     <title>Simple ESG Evaluation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .instructions {
+            text-align: left;
+            margin: 0 auto;
+            padding: 10px 20px;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .button {
+            width: 50%;
+            padding: 6px;
+            margin: 5px 0;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login-btn { background-color: blue; }
+        .logout-btn { background-color: blue; }
+        .survey-btn { background-color: black; }
+        .result-btn { background-color: green; }
+
+        .flash-popup {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            z-index: 9999;
+            color: white;
+            background-color: #28a745; /* success green */
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            animation: fadeInOut 3s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f9f9f9;">
+<body>
     <div style="max-width: 400px; margin: 80px auto; padding: 30px; background: white; border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.1); text-align: center;">
         <h2>Start</h2>
 
-
-<style>
-  .instructions {
-    text-align: left;
-    margin: 0 auto;
-    padding: 10px 20px;
-    max-width: 500px;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-  }
-</style>
-
-<div class="instructions">
-  <p><strong>How to evaluate your company's ESG performance:</strong><br>
-    1. Log in<br>
-    2. Complete the survey<br>
-    3. Check your results<br>
-    4. Accumulate results to build your ESG history<br>
-    5. Track your progress and improve your ESG!
-  </p>
-</div>
-
+        <div class="instructions">
+            <p><strong>How to evaluate your company's ESG performance:</strong><br>
+                1. Log in<br>
+                2. Complete the survey<br>
+                3. Check your results<br>
+                4. Accumulate results to build your ESG history<br>
+                5. Track your progress and improve your ESG!
+            </p>
+        </div>
 
         {% if username %}
-            <h1>Welcome, {{ username }}!</h1>
+            <h2>Welcome, {{ username }}!</h2>
             <p>You have successfully logged in.</p>
-            <form method="get" action="/logout">
-                <button type="submit" style="background-color: blue; color: white; padding: 10px 20px; margin: 10px;">Logout</button>
+            <form method="GET" action="{{ url_for('logout') }}">
+                <button type="submit" class="button logout-btn">Logout</button>
             </form>
         {% else %}
-            <h1>Please login</h1>
+            <h2>Please login</h2>
             <p>You are not logged in.</p>
-            <form method="POST" action="/login">
-                <button type="submit" style="background-color: blue; color: white; padding: 10px 20px; margin: 10px;">Login</button>
+            <form method="get" action="/login">
+                <button type="submit" class="button login-btn">Login</button>
             </form>
         {% endif %}
 
-
-
-
         <form method="get" action="/survey">
-            <button type="submit" style="background-color: black; color: white; padding: 10px 20px; margin: 10px;">Survey</button>
+            <button type="submit" class="button survey-btn">Survey</button>
         </form>
 
         <form method="get" action="/result">
-            <button type="submit" style="background-color: green; color: white; padding: 10px 20px; margin: 10px;">Result</button>
+            <button type="submit" class="button result-btn">Result</button>
         </form>
     </div>
+
+    <!-- 🔔 Flash Message Popup -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash-popup">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
 </body>
 </html>

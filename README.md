@@ -2,6 +2,18 @@
 
 This is a Flask-based web app that evaluates a user's ESG (Environmental, Social, Governance) profile based on their responses to a survey. It's my final project for Harvard's [CS50x](https://cs50.harvard.edu/x), where I wanted to build something that combined backend logic with real-time feedback and simple data visualization.
 
+
+
+
+## How to Run Locally
+1. Clone the repo
+2. Create a virtual environment
+3. Install dependencies: `pip install -r requirements.txt`
+4. Set environment variable: `export FLASK_APP=app.py` (Linux/mac) or `set FLASK_APP=app.py` (Windows)
+5. Run the app: `flask run`
+
+
+
 ---
 
 ## Features
@@ -20,7 +32,7 @@ This is a Flask-based web app that evaluates a user's ESG (Environmental, Social
 
 ## Tech Stack
 
-- **Frontend**: HTML, CSS, JavaScript, Chart.js  
+- **Frontend**: HTML, CSS, JavaScript (Chart.js via CDN)
 - **Backend**: Flask (Python), Jinja2  
 - **Database**: SQLite with SQLAlchemy  
 - **Other**: Flask session management, password hashing with Werkzeug
@@ -30,8 +42,7 @@ This is a Flask-based web app that evaluates a user's ESG (Environmental, Social
 ## Project Status
 
 The main flow — survey, scoring, and result visualization — is complete.  
-- I'm currently adding score history so logged-in users can see previous evaluations.
-+ The core survey and result flow is complete. Future improvements may include result history or better survey analytics.
+Future improvements may include score history or better survey analytics.
 
 
 ---
@@ -48,7 +59,6 @@ project/
 │ ├── register.html
 │ ├── result.html
 │ └── survey.html
-├── static/
 └── README.md
 ```
 
@@ -72,8 +82,8 @@ project/
 ## Timeline
 
 - Project started: April 2025  
-- CS50 final submission: May 2025  
-- Score history feature: in progress
+- CS50 final submission: June 2025  
+
 
 ---
 

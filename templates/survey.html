@@ -4,223 +4,101 @@
     <title>Simple ESG Evaluation Survey</title>
 </head>
 <body>
-    <h1 style="font-size: 24px; color: green;">E(Environment Survey)</h1> 
-
-
-    <h3>E1. Does your company have specific environmental goals?</h3>
-    
     <form method="POST" action="/submit-survey">
-        <input type="radio" id="yes_e1" name="question_e1" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_e1" name="question_e1" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_e1" name="question_e1" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>E2. Has your company's greenhouse gas emissions increased from 2023 to 2024?</h3>
-    
-        <input type="radio" id="yes_e2" name="question_e2" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_e2" name="question_e2" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_e2" name="question_e2" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-    <h3>E3. Has your company's amount of waste decreased from 2023 to 2024?</h3>
-    
-        <input type="radio" id="yes_e3" name="question_e3" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_e3" name="question_e3" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_e3" name="question_e3" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>E4. Has your company's water consumption decreased from 2023 to 2024?</h3>
-
-        <input type="radio" id="yes_e4" name="question_e4" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_e4" name="question_e4" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_e4" name="question_e4" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>E5. Has your company Eco-friendly business?</h3>
-
-        <input type="radio" id="yes_e5" name="question_e5" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_e5" name="question_e5" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_e5" name="question_e5" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-    <h3>E6. Has your company puchased Eco-friendly materials?</h3>
-    
-        <input type="radio" id="yes_e6" name="question_e6" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_e6" name="question_e6" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_e6" name="question_e6" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-<br>
-<br>
-
-    <h1 style="font-size: 24px; color: blue;">S(Social Survey)</h1> 
-
-
-    <h3>S1. Does your company have clear procedures or policies regarding "human rights"?</h3>
-    
-        <input type="radio" id="yes_s1" name="question_s1" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_s1" name="question_s1" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_s1" name="question_s1" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>S2. Does your company have clear procedures or policies regarding "labor rights"</h3>
-
-        <input type="radio" id="yes_s2" name="question_s2" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_s2" name="question_s2" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_s2" name="question_s2" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>S3. Does your company have clear procedures or policies regarding "Diversity"</h3>
-
-        <input type="radio" id="yes_s3" name="question_s3" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_s3" name="question_s3" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_s3" name="question_s3" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-    <h3>S4. Are there clear targets and sustainable practices in your "supply chain"?</h3>
-
-        <input type="radio" id="yes_s4" name="question_s4" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_s4" name="question_s4" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_s4" name="question_s4" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>S5. Has your company not experienced any negative incidents in the past three years (e.g., industrial accidents, lawsuits, etc.)??</h3>
-
-        <input type="radio" id="yes_s5" name="question_s5" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_s5" name="question_s5" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_s5" name="question_s5" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-<br>
-<br>
-
-
-    <h1 style="font-size: 24px; color: red;">G(Governance Survey)</h1> 
-
-
-    <h3>G1. Is your company's financial reporting transparent and accurate?</h3>
-
-        <input type="radio" id="yes_g1" name="question_g1" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_g1" name="question_g1" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_g1" name="question_g1" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>G2. Is top management in your company effectively monitored and controlled?</h3>
-
-        <input type="radio" id="yes_g2" name="question_g2" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_g2" name="question_g2" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_g2" name="question_g2" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>G3. Does your company have clear procedures or policies regarding "remuneration"</h3>
-
-        <input type="radio" id="yes_g3" name="question_g3" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_g3" name="question_g3" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_g3" name="question_g3" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>G4. Does your company have a well-structured risk management system?</h3>
-
-        <input type="radio" id="yes_g4" name="question_g4" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_g4" name="question_g4" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_g4" name="question_g4" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
-    <h3>G5. Is your company compliant with proper tax management and regulations??</h3>
-
-        <input type="radio" id="yes_g5" name="question_g5" value="Y" required>
-        <label for="yes">Yes</label><br>
-
-        <input type="radio" id="no_g5" name="question_g5" value="N">
-        <label for="no">No</label><br>
-
-        <input type="radio" id="dontknow_g5" name="question_g5" value="I don't know">
-        <label for="dontknow">I Don't Know</label><br>
-
-
+        <h1 style="font-size: 24px; color: green;">E (Environment Survey)</h1>
+
+        <!-- E1 ~ E6 -->
+        <h3>E1. Does your company have specific environmental goals?</h3>
+        <input type="radio" id="yes_e1" name="question_e1" value="Y" required><label for="yes_e1">Yes</label><br>
+        <input type="radio" id="no_e1" name="question_e1" value="N"><label for="no_e1">No</label><br>
+        <input type="radio" id="dontknow_e1" name="question_e1" value="Idontknow"><label for="dontknow_e1">I Don't Know</label><br>
+
+        <h3>E2. Has your company's greenhouse gas emissions increased from 2023 to 2024?</h3>
+        <input type="radio" id="yes_e2" name="question_e2" value="Y" required><label for="yes_e2">Yes</label><br>
+        <input type="radio" id="no_e2" name="question_e2" value="N"><label for="no_e2">No</label><br>
+        <input type="radio" id="dontknow_e2" name="question_e2" value="Idontknow"><label for="dontknow_e2">I Don't Know</label><br>
+
+        <h3>E3. Has your company's amount of waste decreased from 2023 to 2024?</h3>
+        <input type="radio" id="yes_e3" name="question_e3" value="Y" required><label for="yes_e3">Yes</label><br>
+        <input type="radio" id="no_e3" name="question_e3" value="N"><label for="no_e3">No</label><br>
+        <input type="radio" id="dontknow_e3" name="question_e3" value="Idontknow"><label for="dontknow_e3">I Don't Know</label><br>
+
+        <h3>E4. Has your company's water consumption decreased from 2023 to 2024?</h3>
+        <input type="radio" id="yes_e4" name="question_e4" value="Y" required><label for="yes_e4">Yes</label><br>
+        <input type="radio" id="no_e4" name="question_e4" value="N"><label for="no_e4">No</label><br>
+        <input type="radio" id="dontknow_e4" name="question_e4" value="Idontknow"><label for="dontknow_e4">I Don't Know</label><br>
+
+        <h3>E5. Has your company Eco-friendly business?</h3>
+        <input type="radio" id="yes_e5" name="question_e5" value="Y" required><label for="yes_e5">Yes</label><br>
+        <input type="radio" id="no_e5" name="question_e5" value="N"><label for="no_e5">No</label><br>
+        <input type="radio" id="dontknow_e5" name="question_e5" value="Idontknow"><label for="dontknow_e5">I Don't Know</label><br>
+
+        <h3>E6. Has your company purchased Eco-friendly materials?</h3>
+        <input type="radio" id="yes_e6" name="question_e6" value="Y" required><label for="yes_e6">Yes</label><br>
+        <input type="radio" id="no_e6" name="question_e6" value="N"><label for="no_e6">No</label><br>
+        <input type="radio" id="dontknow_e6" name="question_e6" value="Idontknow"><label for="dontknow_e6">I Don't Know</label><br>
+
+        <br><br>
+        <h1 style="font-size: 24px; color: blue;">S (Social Survey)</h1>
+
+        <!-- S1 ~ S5 -->
+        <h3>S1. Does your company have clear procedures or policies regarding human rights?</h3>
+        <input type="radio" id="yes_s1" name="question_s1" value="Y" required><label for="yes_s1">Yes</label><br>
+        <input type="radio" id="no_s1" name="question_s1" value="N"><label for="no_s1">No</label><br>
+        <input type="radio" id="dontknow_s1" name="question_s1" value="Idontknow"><label for="dontknow_s1">I Don't Know</label><br>
+
+        <h3>S2. Does your company have clear procedures or policies regarding labor rights?</h3>
+        <input type="radio" id="yes_s2" name="question_s2" value="Y" required><label for="yes_s2">Yes</label><br>
+        <input type="radio" id="no_s2" name="question_s2" value="N"><label for="no_s2">No</label><br>
+        <input type="radio" id="dontknow_s2" name="question_s2" value="Idontknow"><label for="dontknow_s2">I Don't Know</label><br>
+
+        <h3>S3. Does your company have clear procedures or policies regarding diversity?</h3>
+        <input type="radio" id="yes_s3" name="question_s3" value="Y" required><label for="yes_s3">Yes</label><br>
+        <input type="radio" id="no_s3" name="question_s3" value="N"><label for="no_s3">No</label><br>
+        <input type="radio" id="dontknow_s3" name="question_s3" value="Idontknow"><label for="dontknow_s3">I Don't Know</label><br>
+
+        <h3>S4. Are there clear targets and sustainable practices in your supply chain?</h3>
+        <input type="radio" id="yes_s4" name="question_s4" value="Y" required><label for="yes_s4">Yes</label><br>
+        <input type="radio" id="no_s4" name="question_s4" value="N"><label for="no_s4">No</label><br>
+        <input type="radio" id="dontknow_s4" name="question_s4" value="Idontknow"><label for="dontknow_s4">I Don't Know</label><br>
+
+        <h3>S5. Has your company avoided major incidents (accidents, lawsuits, etc.) in the past 3 years?</h3>
+        <input type="radio" id="yes_s5" name="question_s5" value="Y" required><label for="yes_s5">Yes</label><br>
+        <input type="radio" id="no_s5" name="question_s5" value="N"><label for="no_s5">No</label><br>
+        <input type="radio" id="dontknow_s5" name="question_s5" value="Idontknow"><label for="dontknow_s5">I Don't Know</label><br>
+
+        <br><br>
+        <h1 style="font-size: 24px; color: red;">G (Governance Survey)</h1>
+
+        <!-- G1 ~ G5 -->
+        <h3>G1. Is your company's financial reporting transparent and accurate?</h3>
+        <input type="radio" id="yes_g1" name="question_g1" value="Y" required><label for="yes_g1">Yes</label><br>
+        <input type="radio" id="no_g1" name="question_g1" value="N"><label for="no_g1">No</label><br>
+        <input type="radio" id="dontknow_g1" name="question_g1" value="Idontknow"><label for="dontknow_g1">I Don't Know</label><br>
+
+        <h3>G2. Is top management effectively monitored and controlled?</h3>
+        <input type="radio" id="yes_g2" name="question_g2" value="Y" required><label for="yes_g2">Yes</label><br>
+        <input type="radio" id="no_g2" name="question_g2" value="N"><label for="no_g2">No</label><br>
+        <input type="radio" id="dontknow_g2" name="question_g2" value="Idontknow"><label for="dontknow_g2">I Don't Know</label><br>
+
+        <h3>G3. Does your company have policies regarding remuneration?</h3>
+        <input type="radio" id="yes_g3" name="question_g3" value="Y" required><label for="yes_g3">Yes</label><br>
+        <input type="radio" id="no_g3" name="question_g3" value="N"><label for="no_g3">No</label><br>
+        <input type="radio" id="dontknow_g3" name="question_g3" value="Idontknow"><label for="dontknow_g3">I Don't Know</label><br>
+
+        <h3>G4. Does your company have a well-structured risk management system?</h3>
+        <input type="radio" id="yes_g4" name="question_g4" value="Y" required><label for="yes_g4">Yes</label><br>
+        <input type="radio" id="no_g4" name="question_g4" value="N"><label for="no_g4">No</label><br>
+        <input type="radio" id="dontknow_g4" name="question_g4" value="Idontknow"><label for="dontknow_g4">I Don't Know</label><br>
+
+        <h3>G5. Is your company compliant with tax regulations?</h3>
+        <input type="radio" id="yes_g5" name="question_g5" value="Y" required><label for="yes_g5">Yes</label><br>
+        <input type="radio" id="no_g5" name="question_g5" value="N"><label for="no_g5">No</label><br>
+        <input type="radio" id="dontknow_g5" name="question_g5" value="Idontknow"><label for="dontknow_g5">I Don't Know</label><br>
+
+        <br>
         <button type="submit">Submit</button>
-
     </form>
-        {% with messages = get_flashed_messages(with_categories=true) %}
-          {% if messages %}
-            <script>
-              {% for category, message in messages %}
-                alert("{{ message }}");
-              {% endfor %}
-            </script>
-          {% endif %}
-        {% endwith %}
 
 </body>
 </html>

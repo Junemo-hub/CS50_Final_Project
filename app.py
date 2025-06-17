@@ -1,14 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, get_flashed_messages
 from flask_sqlalchemy import SQLAlchemy
 from models import db, User, Survey, Evaluation
-from forms import LoginForm, RegisterForm, SurveyForm
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
 
 # Flask App 초기화
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'
+app.secret_key = os.environ.get('SECRET_KEY', 'dev_secret')
+app.url_map.strict_slashes = False
 
 # ✅ Flask의 instance 폴더가 없으면 생성
 if not os.path.exists(app.instance_path):
@@ -50,19 +50,18 @@ def login():
         print("🔎 username:", username)
         print("🔍 user from DB:", user)
 
-        if user:
-            print("🧪 checking password...")
-            print("✅ match?", check_password_hash(user.password, password))
-
         if user and check_password_hash(user.password, password):
+                     
             session['user_id'] = user.id
             session['username'] = user.username
             flash('Login successful!', 'success')
             return redirect(url_for('index'))
         else:
-            flash("Invalid username or password.", "error")            
+            flash("Invalid username or password.", "danger")
             return redirect(url_for('login'))
 
+    # ✅ GET 요청일 때는 템플릿을 직접 렌더링해야 함
+    get_flashed_messages()
     return render_template("login.html")
 
 
@@ -76,17 +75,18 @@ def register():
         # ✅ 이거 추가해야 됨
         confirm_password = request.form.get('confirm_password')
 
-
-       # ❗비밀번호 불일치 체크가 빠짐
-        if password != confirm_password:
-           return render_template('register.html', error="Passwords do not match.")
-        
-        # 비밀번호 해싱
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
-        
         # 중복 사용자명 체크
         if User.query.filter_by(username=username).first():
             return render_template('register.html', error="Username already exists.")
+
+       # ❗비밀번호 불일치 체크가 빠짐
+        if password != confirm_password:
+            flash("Passwords do not match.", "danger")
+            return render_template('register.html')
+        
+        # 비밀번호 해싱
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')        
+
         
         # 사용자 생성
         new_user = User(username=username, password=hashed_password)
@@ -94,33 +94,24 @@ def register():
         try:
             db.session.add(new_user)
             db.session.commit()
-            return redirect(url_for('login'))
-        except:
-            return render_template('register.html', error="There was an issue creating your account.")
-    
+            flash("Registration successful!", "success")
+            return redirect(url_for('login'))  # ✅ 반드시 return 해줘야 함
+        except Exception as e:
+            print("❗ Database Error:", e)
+            flash("There was a problem creating your account.", "danger")
+            return render_template('register.html')
+
+    # ✅ GET 요청 시 명확히 반환
     return render_template('register.html')
 
+
 # Survey page
-@app.route('/survey', methods=['GET', 'POST'])
+@app.route('/survey', methods=['GET'])
 def survey():
     if 'user_id' not in session:
         flash('Please log in to take the survey.', 'warning')
         return redirect(url_for('login'))
-
-    form = SurveyForm()
-
-    if form.validate_on_submit():
-        new_survey = Survey(
-            user_id=session['user_id'],
-            question=form.question.data,
-            answer=form.answer.data
-        )
-        db.session.add(new_survey)
-        db.session.commit()
-        flash('Survey submitted successfully!', 'success')
-        return redirect(url_for('result'))
-
-    return render_template('survey.html', form=form)
+    return render_template('survey.html')
 
 #survey - submit
 @app.route('/submit-survey', methods=['POST'])
@@ -131,6 +122,8 @@ def submit_survey():
 
     for question_key in request.form:
         answer = request.form[question_key]
+        if not answer:  # 빈 응답 무시
+            continue
         new_response = Survey(
             user_id=session['user_id'],
             question=question_key,
@@ -141,6 +134,7 @@ def submit_survey():
     db.session.commit()
     flash('Survey submitted successfully.', 'success')
     return redirect(url_for('result'))
+
 
 def calculate_scores(responses: dict):
     e_questions = [k for k in responses if k.startswith('question_e')]
@@ -177,18 +171,36 @@ def result():
     user_id = session['user_id']
     responses_query = Survey.query.filter_by(user_id=user_id).all()
 
+    # 같은 user_id에 대해 기존 응답 삭제
+    Survey.query.filter_by(user_id=session['user_id']).delete()
+    db.session.commit()  # 삭제 반영
+
     # 응답 딕셔너리로 변환
     responses = {resp.question: resp.answer for resp in responses_query}
 
     # 답변 없을 때
     if not responses:
-        flash('Please complete the survey before viewing results.', 'error')
+        flash('Please complete the survey before viewing results.', 'danger')
         return redirect(url_for('survey'))
 
     # 점수 계산
     overall_score, e_score, s_score, g_score = calculate_scores(responses)
 
-    # 결과 페이지에 점수 전달
+    # ✅ 기존 점수 삭제 (중복 방지)
+    Evaluation.query.filter_by(user_id=user_id).delete()
+    db.session.commit()
+
+    # ✅ 점수 저장 추가
+    new_eval = Evaluation(
+        user_id=user_id,
+        overall_score=overall_score,
+        e_score=e_score,
+        s_score=s_score,
+        g_score=g_score
+    )
+    db.session.add(new_eval)
+    db.session.commit()
+
     return render_template(
         'result.html',
         overall_score=overall_score,
@@ -197,14 +209,17 @@ def result():
         g_score=g_score
     )
 
-# 로그아웃 처리
-@app.route('/logout')
+
+    # 로그아웃 처리
+@app.route('/logout', methods=['GET'])
 def logout():
-    session.clear()  # 모든 세션 정보 삭제
-    return redirect(url_for('index'))  # 로그아웃 후 메인 페이지로 리다이렉트
+    session.clear()
+    flash("You have been logged out.", "info")
+    return redirect(url_for('index'))
 
 
 # 마지막에 둬야 하는 데 정확히는 모르겠음.
 if __name__ == '__main__':
-    app.run(debug=True)
+    debug_mode = os.environ.get('FLASK_DEBUG', '1') == '1'
+    app.run(debug=debug_mode)
 

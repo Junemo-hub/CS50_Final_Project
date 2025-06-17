@@ -29,6 +29,8 @@ class Survey(db.Model):
     user = db.relationship('User', backref=db.backref('surveys', lazy=True))
 
 # ESG 평가 결과 모델 정의
+from datetime import datetime
+
 class Evaluation(db.Model):
     __tablename__ = 'evaluations'
     id = db.Column(db.Integer, primary_key=True)
@@ -37,5 +39,6 @@ class Evaluation(db.Model):
     e_score = db.Column(db.Integer, nullable=False)
     s_score = db.Column(db.Integer, nullable=False)
     g_score = db.Column(db.Integer, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship('User', backref=db.backref('evaluations', lazy=True))
