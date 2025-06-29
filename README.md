@@ -1,6 +1,8 @@
 # ESG Evaluation App (CS50 Final Project)
 
 #### Video Demo: https://youtu.be/Tx30U1eAJ0I
+#### Certificate : https://cs50.harvard.edu/certificates/06558e2b-badc-4cd9-9f00-e871f1247f83
+
 
 This is a Flask-based web app that evaluates a user's ESG (Environmental, Social, Governance) profile based on their responses to a survey. It's my final project for Harvard's [CS50x](https://cs50.harvard.edu/x), where I wanted to build something that combined backend logic with real-time feedback and simple data visualization.
 
@@ -46,6 +48,7 @@ Feedback is provided via Flask flash messages for login errors, logout confirmat
 
 ## File Overview
 
+```
 project/
 │
 ├── app.py # Main Flask app with all route logic
@@ -57,7 +60,7 @@ project/
 │ ├── survey.html # Survey form for ESG questions
 │ └── result.html # Donut chart results using Chart.js
 └── static/ # (Unused for now, reserved for future CSS/JS files)
-
+```
 
 ---
 
